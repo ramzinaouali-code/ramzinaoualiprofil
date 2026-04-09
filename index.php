@@ -34,7 +34,11 @@ require_once __DIR__ . '/includes/header.php';
 
         <!-- Hero Post -->
         <article class="hero-card">
-          <div class="hero-thumb" style="background: <?= h($hero['thumbnail_css'] ?: 'linear-gradient(135deg,#1a73e8,#0d47a1)') ?>"></div>
+          <div class="hero-thumb" style="background: <?= h($hero['thumbnail_css'] ?: 'linear-gradient(135deg,#1a73e8,#0d47a1)') ?>">
+            <?php if (!empty($hero['photo_url'])): ?>
+              <img src="<?= h($hero['photo_url']) ?>" alt="<?= h($hero['title']) ?>" loading="eager">
+            <?php endif; ?>
+          </div>
           <div class="hero-body">
             <?php if ($hero['category_name']): ?>
               <span class="cat-badge" style="background:<?= h($hero['category_color'] ?? '#1a73e8') ?>">
@@ -65,7 +69,11 @@ require_once __DIR__ . '/includes/header.php';
           <?php foreach ($posts as $post): ?>
             <article class="card">
               <a href="<?= h(BLOG_URL) ?>/post.php?slug=<?= h($post['slug']) ?>">
-                <div class="card-thumb" style="background: <?= h($post['thumbnail_css'] ?: 'linear-gradient(135deg,#1a73e8,#0d47a1)') ?>"></div>
+                <div class="card-thumb" style="background: <?= h($post['thumbnail_css'] ?: 'linear-gradient(135deg,#1a73e8,#0d47a1)') ?>">
+                  <?php if (!empty($post['photo_url'])): ?>
+                    <img src="<?= h($post['photo_url']) ?>" alt="<?= h($post['title']) ?>" loading="lazy">
+                  <?php endif; ?>
+                </div>
               </a>
               <div class="card-body">
                 <?php if ($post['category_name']): ?>

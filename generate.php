@@ -228,6 +228,11 @@ Requirements:
 Also recommend 3 real books available on Amazon that are directly relevant to this topic.
 Books should be real, published after 2015 if possible, and widely available.
 
+Also provide 3-5 photo search keywords (in English, comma-separated, no hashtags) that would
+find a relevant, professional stock photo for this post on Unsplash. Think: what visual scene
+best represents this topic? (e.g. "hospital server room, cybersecurity", "doctor laptop privacy",
+"data breach alert screen").
+
 Return your response ONLY as the following XML structure with no text before or after it:
 
 <post>
@@ -236,6 +241,7 @@ Return your response ONLY as the following XML structure with no text before or 
 <excerpt>A compelling 2-sentence summary of the post for the homepage card.</excerpt>
 <meta_description>SEO meta description under 160 characters.</meta_description>
 <tags>tag1, tag2, tag3, tag4</tags>
+<image_keywords>hospital,cybersecurity,data-security</image_keywords>
 <body>
 <h2>Introduction heading here</h2>
 <p>Body paragraphs with real HTML markup here...</p>
@@ -270,6 +276,13 @@ function parse_post_response(string $raw): array {
             throw new RuntimeException("Missing field: <{$f}>");
         }
         $data[$f] = trim($fm[1]);
+    }
+
+    // Extract image keywords (optional — fall back to tags if missing)
+    if (preg_match('/<image_keywords>(.*?)<\/image_keywords>/s', $xml, $ikm)) {
+        $data['image_keywords'] = trim($ikm[1]);
+    } else {
+        $data['image_keywords'] = $data['tags'];
     }
 
     // Sanitize slug
@@ -307,6 +320,9 @@ function insert_post(PDO $db, array $data, string $topic): void {
 
     $thumbnail_css = post_thumbnail_css($data['slug'], $color);
 
+    // Fetch a real photo from Unsplash based on Claude's image keywords
+    $photo_url = fetch_unsplash_photo($data['image_keywords']);
+
     // Ensure unique slug
     $slug  = $data['slug'];
     $check = $db->prepare('SELECT id FROM posts WHERE slug = ?');
@@ -316,8 +332,8 @@ function insert_post(PDO $db, array $data, string $topic): void {
     }
 
     $db->prepare(
-        'INSERT INTO posts (slug, title, excerpt, meta_description, body, tags, category_id, thumbnail_css)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO posts (slug, title, excerpt, meta_description, body, tags, category_id, thumbnail_css, photo_url)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
     )->execute([
         $slug,
         $data['title'],
@@ -327,6 +343,7 @@ function insert_post(PDO $db, array $data, string $topic): void {
         $data['tags'],
         $category_id,
         $thumbnail_css,
+        $photo_url,
     ]);
 
     $post_id = (int)$db->lastInsertId();
@@ -387,6 +404,38 @@ function post_thumbnail_css(string $slug, string $color = '#1a73e8'): string {
     $hue  = abs(crc32($slug)) % 360;
     $hue2 = ($hue + 40) % 360;
     return "linear-gradient(135deg, {$color}, hsl({$hue2},55%,28%))";
+}
+
+// ─── Unsplash Photo Fetcher ───────────────────────────────────────────────────
+function fetch_unsplash_photo(string $keywords): string {
+    // Always anchor to healthcare + tech so images stay professional
+    $base     = 'healthcare,technology,cybersecurity';
+    $clean    = preg_replace('/[^a-z0-9,\- ]/i', '', $keywords);
+    $query    = urlencode($base . ',' . $clean);
+    $source   = "https://source.unsplash.com/1200x630/?{$query}";
+
+    // Follow the redirect to capture the actual stable CDN image URL
+    $ch = curl_init($source);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_NOBODY         => true,   // HEAD only — we only need the final URL
+        CURLOPT_TIMEOUT        => 10,
+        CURLOPT_USERAGENT      => 'HealthCyberInsights/1.0',
+    ]);
+    curl_exec($ch);
+    $final_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    // Verify we got a real Unsplash image URL (not a redirect loop or error)
+    if ($http_code === 200 && str_contains($final_url, 'images.unsplash.com')) {
+        log_msg("Photo fetched: {$final_url}");
+        return $final_url;
+    }
+
+    log_msg("Unsplash fetch failed (HTTP {$http_code}), using gradient fallback");
+    return ''; // Empty = CSS gradient fallback used in frontend
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

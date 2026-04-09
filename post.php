@@ -73,6 +73,9 @@ require_once __DIR__ . '/includes/header.php';
         <!-- Hero Thumbnail -->
         <div class="post-hero-thumb"
              style="background: <?= h($post['thumbnail_css'] ?: 'linear-gradient(135deg,#1a73e8,#0d47a1)') ?>">
+          <?php if (!empty($post['photo_url'])): ?>
+            <img src="<?= h($post['photo_url']) ?>" alt="<?= h($post['title']) ?>" loading="eager">
+          <?php endif; ?>
         </div>
 
         <!-- Body -->

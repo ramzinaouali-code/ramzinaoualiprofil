@@ -167,7 +167,16 @@ img { max-width: 100%; display: block; }
   border-radius: var(--radius) var(--radius) 0 0;
   flex-shrink: 0;
 }
-.card-thumb::after {
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+/* Shield icon only shown when no photo (img absent) */
+.card-thumb:not(:has(img))::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -216,7 +225,15 @@ img { max-width: 100%; display: block; }
   height: 220px;
   position: relative;
 }
-.hero-thumb::after {
+.hero-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+.hero-thumb:not(:has(img))::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -342,7 +359,16 @@ img { max-width: 100%; display: block; }
   margin-bottom: 28px;
   position: relative;
 }
-.post-hero-thumb::after {
+.post-hero-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+}
+.post-hero-thumb:not(:has(img))::after {
   content: '';
   position: absolute;
   inset: 0;

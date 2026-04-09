@@ -67,6 +67,16 @@ function init_schema(PDO $pdo): void {
 
     seed_categories($pdo);
     seed_settings($pdo);
+    migrate_photo_url($pdo);
+}
+
+function migrate_photo_url(PDO $pdo): void {
+    // Add photo_url column if it doesn't exist (safe to run every boot)
+    $cols = $pdo->query("PRAGMA table_info(posts)")->fetchAll(PDO::FETCH_ASSOC);
+    $has  = array_filter($cols, fn($c) => $c['name'] === 'photo_url');
+    if (!$has) {
+        $pdo->exec("ALTER TABLE posts ADD COLUMN photo_url TEXT NOT NULL DEFAULT ''");
+    }
 }
 
 function seed_categories(PDO $pdo): void {
