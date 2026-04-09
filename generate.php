@@ -98,7 +98,7 @@ $topics = [
     'Medication Safety and AI: Preventing Algorithmic Errors in Prescribing',
 ];
 
-// ─── Respond immediately to cron-job.org, then generate in background ────────
+// ─── Respond immediately to cron-job.org, spawn generation as subprocess ─────
 if (!$is_cli) {
     $ack = "202 Accepted — generating post in background.\n";
     http_response_code(202);
@@ -107,12 +107,18 @@ if (!$is_cli) {
     header('Content-Length: ' . strlen($ack));
     echo $ack;
 
-    // Flush all output buffers so the response reaches the client now
+    // Flush through all buffers + CDN proxy layers
     while (ob_get_level()) ob_end_flush();
     flush();
 
-    // PHP continues executing below after the HTTP connection is closed
-    set_time_limit(300); // Allow up to 5 min for Claude API + photo fetch
+    // Spawn a completely independent subprocess so Railway's CDN doesn't
+    // buffer the response waiting for this script to finish
+    $php    = PHP_BINARY;
+    $script = escapeshellarg(__FILE__);
+    $log    = escapeshellarg(LOG_PATH);
+    shell_exec("{$php} {$script} --local >> {$log} 2>&1 &");
+
+    exit; // This process ends — subprocess does the real work
 }
 
 // ─── Main (runs in background for HTTP, inline for CLI) ───────────────────────
