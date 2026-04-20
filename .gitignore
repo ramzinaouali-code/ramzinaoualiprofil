@@ -1,0 +1,9 @@
+# Workspace internals — not needed in the repo
+agent-state/
+config.json
+copilot-instructions.md
+input/
+scripts/
+working/
+*.log
+.DS_Store
