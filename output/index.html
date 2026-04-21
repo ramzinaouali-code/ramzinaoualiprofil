@@ -6,7 +6,7 @@
   <title>Ramzi Naouali | Healthcare IT · AI Governance · Cybersecurity · Privacy</title>
 
   <!-- SEO -->
-  <meta name="description" content="Ramzi Naouali — Senior healthcare IT practitioner at Hôpital Montfort. Sharing expertise in AI governance, PHIPA compliance, and cybersecurity for Canadian healthcare. Open to collaboration and knowledge exchange." />
+  <meta name="description" content="Ramzi Naouali, Senior healthcare IT practitioner at Hôpital Montfort. Sharing expertise in AI governance, PHIPA compliance, and cybersecurity for Canadian healthcare. Open to collaboration and knowledge exchange." />
   <meta name="keywords" content="Ramzi Naouali, healthcare IT, AI governance healthcare Canada, PHIPA compliance, cybersecurity hospital, privacy impact assessment, Hôpital Montfort, knowledge sharing" />
   <meta name="author" content="Ramzi Naouali" />
   <meta name="robots" content="index, follow" />
@@ -286,7 +286,165 @@
       z-index: 0;
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 640px; }
+
+    /* ══════════════════════════════════════════
+       HERO VISUAL — Modern Domain Core
+    ══════════════════════════════════════════ */
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+      height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hv-glow {
+      position: absolute;
+      width: 440px; height: 440px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(15,92,102,0.14) 0%, rgba(15,92,102,0.05) 40%, transparent 70%);
+      z-index: 0;
+      animation: hv-pulse 6s ease-in-out infinite;
+    }
+    @keyframes hv-pulse {
+      0%, 100% { transform: scale(1);    opacity: 0.9; }
+      50%      { transform: scale(1.08); opacity: 1; }
+    }
+
+    .hv-ring {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 1;
+      animation: hv-rotate 50s linear infinite;
+    }
+    .hv-ring.outer {
+      width: 380px; height: 380px;
+      border: 1.5px dashed rgba(15,92,102,0.22);
+    }
+    .hv-ring.inner {
+      width: 260px; height: 260px;
+      border: 1px solid rgba(15,92,102,0.10);
+      animation-duration: 80s;
+      animation-direction: reverse;
+    }
+    @keyframes hv-rotate { to { transform: rotate(360deg); } }
+
+    .hv-core {
+      position: relative;
+      width: 150px; height: 150px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, #116773 0%, #0a4750 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 30px 60px -10px rgba(15,92,102,0.45),
+        inset 0 0 0 1px rgba(255,255,255,0.12),
+        inset 0 1px 0 0 rgba(255,255,255,0.18);
+      z-index: 3;
+    }
+    .hv-core::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 32px;
+      background: radial-gradient(circle at 28% 18%, rgba(255,255,255,0.22), transparent 58%);
+      pointer-events: none;
+    }
+    .hv-core-svg {
+      width: 68px; height: 68px;
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hv-dot {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 5px rgba(15,92,102,0.12);
+      z-index: 2;
+    }
+    .hv-dot.d1 { top: 78px;    right: 90px; }
+    .hv-dot.d2 { bottom: 110px; left: 60px;  background: var(--rust); box-shadow: 0 0 0 5px rgba(168,90,58,0.14); }
+
+    .hv-domain {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 16px 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 28px rgba(36,50,61,0.10);
+      z-index: 4;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .hv-domain:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(36,50,61,0.14); }
+
+    .hv-domain-icon {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      background: var(--teal-10);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hv-domain-icon svg { width: 20px; height: 20px; }
+    .hv-domain.rust .hv-domain-icon { background: var(--rust-10); color: var(--rust); }
+    .hv-domain-text { display: flex; flex-direction: column; }
+    .hv-domain-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hv-domain-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--graphite);
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+
+    .hv-d-ai      { top: 28px;    left: 50%;    transform: translateX(-50%); }
+    .hv-d-privacy { bottom: 70px; left: -14px; }
+    .hv-d-cyber   { bottom: 70px; right: -14px; }
+
+    .hv-caption {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero .container { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { height: 440px; }
+      .hero::before { display: none; }
+    }
 
     /* Affiliation notice — key trust signal for conflict-of-interest protection */
     .hero-affiliation {
@@ -373,7 +531,8 @@
       gap: 14px;
     }
 
-    .proof-icon { font-size: 22px; margin-top: 2px; flex-shrink: 0; }
+    .proof-icon { width: 30px; height: 30px; color: rgba(255,255,255,0.85); margin-top: 2px; flex-shrink: 0; }
+    .proof-icon svg { width: 100%; height: 100%; display: block; }
     .proof-label { font-size: 14px; font-weight: 600; color: var(--white); line-height: 1.4; }
     .proof-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 3px; }
 
@@ -492,9 +651,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      color: var(--teal);
       margin: 0 auto 16px;
     }
+    .help-icon svg { width: 24px; height: 24px; }
 
     .help-title { font-size: 14px; font-weight: 700; color: var(--graphite); margin-bottom: 8px; }
     .help-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
@@ -739,8 +899,9 @@
       margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
+    .tl-type svg { width: 14px; height: 14px; flex-shrink: 0; }
 
     .tl-title {
       font-family: var(--font-serif);
@@ -837,9 +998,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      color: var(--teal);
       flex-shrink: 0;
     }
+    .connect-icon svg { width: 18px; height: 18px; }
 
     .connect-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 3px; }
     .connect-value { font-size: 14px; font-weight: 500; color: var(--text-primary); }
@@ -1028,13 +1190,14 @@
         <p class="lead fade-in fade-in-delay-2">
           Senior healthcare IT practitioner sharing 15&nbsp;years of operational experience
           in AI governance, PHIPA compliance, and cybersecurity. I collaborate with peers,
-          contribute to knowledge, and advise colleagues — because better-informed healthcare
+          contribute to knowledge, and advise colleagues, because better-informed healthcare
           teams build safer systems.
         </p>
 
         <div class="hero-actions fade-in fade-in-delay-3">
           <a href="#connect" class="btn btn-teal">
-            &#128172; Start a Conversation
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 1 4.5 7.2L4 20l.8-4.5A7.9 7.9 0 0 1 4 12z"/></svg>
+            Start a Conversation
           </a>
           <a href="#achievements" class="btn btn-outline">
             View Achievements
@@ -1049,52 +1212,126 @@
         </div>
 
       </div>
+
+      <!-- Modern Domain Core visual -->
+      <div class="hero-visual fade-in fade-in-delay-3" aria-hidden="true">
+        <div class="hv-glow"></div>
+        <div class="hv-ring outer"></div>
+        <div class="hv-ring inner"></div>
+
+        <span class="hv-dot d1"></span>
+        <span class="hv-dot d2"></span>
+
+        <div class="hv-core">
+          <svg class="hv-core-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 5L55 13V30C55 44.5 44 55 32 59C20 55 9 44.5 9 30V13L32 5Z"
+                  stroke="currentColor" stroke-width="2" stroke-linejoin="round" opacity="0.35"/>
+            <path d="M12 33H22L26 23L32 41L36 29H52"
+                  stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="hv-domain hv-d-ai">
+          <div class="hv-domain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="7" width="12" height="12" rx="2"/>
+              <circle cx="12" cy="13" r="1.8"/>
+              <path d="M9 3v4M15 3v4M9 19v2M15 19v2M3 10h3M3 16h3M18 10h3M18 16h3"/>
+            </svg>
+          </div>
+          <div class="hv-domain-text">
+            <div class="hv-domain-label">Domain 01</div>
+            <div class="hv-domain-name">AI Governance</div>
+          </div>
+        </div>
+
+        <div class="hv-domain hv-d-privacy">
+          <div class="hv-domain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="10" width="14" height="10" rx="2"/>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+              <circle cx="12" cy="15" r="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="hv-domain-text">
+            <div class="hv-domain-label">Domain 02</div>
+            <div class="hv-domain-name">Privacy &amp; PHIPA</div>
+          </div>
+        </div>
+
+        <div class="hv-domain hv-d-cyber rust">
+          <div class="hv-domain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3L4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-3z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="hv-domain-text">
+            <div class="hv-domain-label">Domain 03</div>
+            <div class="hv-domain-name">Cybersecurity</div>
+          </div>
+        </div>
+
+        <div class="hv-caption">Three interconnected domains</div>
+      </div>
+
     </div>
   </section>
-
-  <!-- ═══════ FRAMING BANNER ═══════ -->
-  <div class="framing-banner">
-    <div class="container">
-      <div class="framing-inner">
-        <span class="framing-icon">&#128161;</span>
-        <p class="framing-text">
-          <strong>This is a personal professional profile.</strong>
-          I'm an active employee at Hôpital Montfort — this site is not a commercial
-          offering. It's a place where I share what I've learned, connect with peers across
-          Canadian healthcare, and make it easier to collaborate and exchange knowledge.
-          Think of it as a public-facing extension of my LinkedIn.
-        </p>
-      </div>
-    </div>
-  </div>
 
   <!-- ═══════ PROOF POINTS ═══════ -->
   <div class="proof-row">
     <div class="container">
       <div class="proof-grid">
         <div class="proof-item">
-          <span class="proof-icon">&#127973;</span>
+          <span class="proof-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 28h22M7 28V11l9-5 9 5v17"/>
+              <path d="M13 17h6M16 14v6"/>
+              <path d="M12 28v-6h8v6"/>
+            </svg>
+          </span>
           <div>
             <div class="proof-label">Hospital IT &amp; Security Leadership</div>
-            <div class="proof-sub">Hôpital Montfort · 15+ years</div>
+            <div class="proof-sub">Acute-care environment · 15+ years</div>
           </div>
         </div>
         <div class="proof-item">
-          <span class="proof-icon">&#129302;</span>
+          <span class="proof-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="14" height="14" rx="2"/>
+              <circle cx="16" cy="16" r="2.5"/>
+              <path d="M12 3v3M20 3v3M12 26v3M20 26v3M3 12h3M3 20h3M26 12h3M26 20h3"/>
+            </svg>
+          </span>
           <div>
             <div class="proof-label">AI Governance &amp; Policy</div>
             <div class="proof-sub">LLM auditing · Responsible AI · Healthcare context</div>
           </div>
         </div>
         <div class="proof-item">
-          <span class="proof-icon">&#9878;</span>
+          <span class="proof-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 3L5 7v9c0 6.5 5 12 11 13 6-1 11-6.5 11-13V7l-11-4z"/>
+              <path d="M11 16l3.5 3.5L21 13"/>
+            </svg>
+          </span>
           <div>
             <div class="proof-label">Privacy, TRA &amp; Compliance</div>
             <div class="proof-sub">PHIPA · PIPEDA · IPC-ready programs</div>
           </div>
         </div>
         <div class="proof-item">
-          <span class="proof-icon">&#128187;</span>
+          <span class="proof-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="6" width="24" height="6" rx="1.5"/>
+              <rect x="4" y="14" width="24" height="6" rx="1.5"/>
+              <rect x="4" y="22" width="24" height="6" rx="1.5"/>
+              <circle cx="8" cy="9" r="1" fill="currentColor"/>
+              <circle cx="8" cy="17" r="1" fill="currentColor"/>
+              <circle cx="8" cy="25" r="1" fill="currentColor"/>
+              <path d="M22 9h3M22 17h3M22 25h3"/>
+            </svg>
+          </span>
           <div>
             <div class="proof-label">Microsoft, Cisco &amp; Healthcare Platforms</div>
             <div class="proof-sub">Azure · M365 · Cisco · ServiceNow · HL7</div>
@@ -1115,7 +1352,7 @@
           My work spans four areas that, in healthcare, don't exist in isolation.
           AI governance fails without privacy controls. Privacy programs fail without
           security fundamentals. And both depend on regulatory literacy. These are
-          the domains where I've built the deepest operational experience — and where
+          the domains where I've built the deepest operational experience, and where
           I most enjoy sharing knowledge and collaborating with peers.
         </p>
       </div>
@@ -1127,8 +1364,8 @@
           <div class="expertise-title">AI &amp; LLM Governance</div>
           <p class="expertise-desc">
             How to evaluate, approve, and govern AI tools in clinical and administrative
-            settings — including LLM-specific risks like data leakage, hallucination, and
-            consent violations. Built and applied at Hôpital Montfort.
+            settings, including LLM-specific risks like data leakage, hallucination, and
+            consent violations, grounded in day-to-day healthcare practice.
           </p>
           <div class="expertise-tags">
             <span class="pill pill-teal">AI Governance</span>
@@ -1173,7 +1410,7 @@
           <p class="expertise-desc">
             Navigating PHIPA, OHA standards, and IPC requirements in Ontario's bilingual
             healthcare system. What compliance documentation actually needs to look like
-            when the regulator arrives — not just what policy says.
+            when the regulator arrives, not just what policy says.
           </p>
           <div class="expertise-tags">
             <span class="pill pill-teal">IPC Readiness</span>
@@ -1194,7 +1431,7 @@
         <h2 class="heading">How I Think About Problems</h2>
         <p class="lead">
           Whether I'm working through a challenge with a colleague, contributing to a
-          peer review, or advising informally — this is the mental model I follow.
+          peer review, or advising informally, this is the mental model I follow.
           It's also how the hospital initiatives below were structured.
         </p>
       </div>
@@ -1205,7 +1442,7 @@
           <div class="step-title">Understand the Context</div>
           <p class="step-desc">
             Stakeholders, systems, regulatory obligations, and operational constraints.
-            No two hospitals are identical — context shapes everything.
+            No two hospitals are identical, context shapes everything.
           </p>
         </div>
         <div class="approach-step">
@@ -1230,14 +1467,14 @@
           <div class="step-title">Build a Practical Path Forward</div>
           <p class="step-desc">
             Prioritized, sequenced, and calibrated to what an organization can actually
-            execute — not an aspirational list that stalls on the first implementation.
+            execute, not an aspirational list that stalls on the first implementation.
           </p>
         </div>
         <div class="approach-step">
           <div class="step-num">Step 05</div>
           <div class="step-title">Support Governance That Lasts</div>
           <p class="step-desc">
-            The goal isn't a one-time fix — it's durable capability and governance
+            The goal isn't a one-time fix, it's durable capability and governance
             ownership inside the organization.
           </p>
         </div>
@@ -1253,22 +1490,33 @@
         <h2 class="heading">Ways to Collaborate</h2>
         <p class="lead">
           I'm open to knowledge exchange, peer review, informal advising, and speaking
-          opportunities. I'm not taking on paid consulting work at this time — but I
+          opportunities. I'm not taking on paid consulting work at this time, but I
           genuinely enjoy helping teams in healthcare think through hard problems.
         </p>
       </div>
 
       <div class="help-grid">
         <div class="help-card fade-in fade-in-delay-1">
-          <div class="help-icon">&#128172;</div>
+          <div class="help-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 12a8 8 0 1 1 4.5 7.2L4 20l0.8-4.5A7.9 7.9 0 0 1 4 12z"/>
+              <path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/>
+            </svg>
+          </div>
           <div class="help-title">Peer Conversation</div>
           <p class="help-desc">
             Talking through a governance challenge, a PHIPA question, or an AI
-            evaluation you're working through — no agenda, just knowledge exchange.
+            evaluation you're working through, no agenda, just knowledge exchange.
           </p>
         </div>
         <div class="help-card fade-in fade-in-delay-2">
-          <div class="help-icon">&#128214;</div>
+          <div class="help-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5v-15z"/>
+              <path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H19v-5"/>
+              <path d="M8 8h7M8 11h5"/>
+            </svg>
+          </div>
           <div class="help-title">Document &amp; Framework Review</div>
           <p class="help-desc">
             Reviewing a PIA, a security policy, or a risk register draft and giving
@@ -1276,7 +1524,12 @@
           </p>
         </div>
         <div class="help-card fade-in fade-in-delay-3">
-          <div class="help-icon">&#127908;</div>
+          <div class="help-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="3" width="6" height="12" rx="3"/>
+              <path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/>
+            </svg>
+          </div>
           <div class="help-title">Speaking &amp; Panels</div>
           <p class="help-desc">
             Contributing to conferences, webinars, and working groups on AI governance,
@@ -1284,7 +1537,13 @@
           </p>
         </div>
         <div class="help-card fade-in fade-in-delay-4">
-          <div class="help-icon">&#128101;</div>
+          <div class="help-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="8" r="3"/>
+              <circle cx="17" cy="9" r="2.5"/>
+              <path d="M3 19a6 6 0 0 1 12 0M14 19a5 5 0 0 1 7 0"/>
+            </svg>
+          </div>
           <div class="help-title">Community &amp; Working Groups</div>
           <p class="help-desc">
             Participating in healthcare IT, CISO, or privacy communities where shared
@@ -1339,15 +1598,16 @@
             <div class="case-col">
               <div class="case-field-label">Situation</div>
               <p class="case-field-text">
-                Clinical departments were requesting AI-assisted tools — note transcription,
-                scheduling optimization, ED triage support — with no governance structure in
-                place to evaluate or approve deployments safely under PHIPA.
+                Clinical departments across hospitals and clinics are requesting AI-assisted
+                tools (note transcription, scheduling optimization, triage support) faster
+                than most organizations have governance structures in place to evaluate or
+                approve them safely under PHIPA.
               </p>
               <div class="case-field-label">Challenge</div>
               <p class="case-field-text">
-                Build a governance framework that could assess AI tools quickly enough to
-                meet clinical demand while maintaining privacy controls and regulatory
-                compliance — and keep patient data in-house.
+                Build a governance framework that can assess AI tools quickly enough to meet
+                clinical demand while maintaining privacy controls, regulatory compliance,
+                and keeping patient data in-house.
               </p>
             </div>
             <div class="case-col">
@@ -1404,14 +1664,16 @@
             <div class="case-col">
               <div class="case-field-label">Situation</div>
               <p class="case-field-text">
-                The hospital operated on a legacy flat network with 1,200+ endpoints including
-                312 medical devices sharing segments with administrative workstations —
-                a significant lateral movement risk following sector-wide ransomware warnings.
+                Many hospitals and clinics still operate on legacy flat networks with
+                medical devices sharing segments with administrative workstations, creating
+                significant lateral movement risk as sector-wide ransomware activity
+                continues to rise across Canadian healthcare.
               </p>
               <div class="case-field-label">Challenge</div>
               <p class="case-field-text">
-                Complete a full network redesign and Zero Trust rollout within a single fiscal
-                year without disrupting 24/7 clinical operations or patient care systems.
+                Complete a full network redesign and Zero Trust rollout within a single
+                fiscal year without disrupting 24/7 clinical operations or patient care
+                systems.
               </p>
             </div>
             <div class="case-col">
@@ -1470,15 +1732,16 @@
             <div class="case-col">
               <div class="case-field-label">Situation</div>
               <p class="case-field-text">
-                Fragmented privacy program with inconsistent access logging, undocumented
-                consent workflows, and no formal breach notification procedure — ahead of
-                an impending IPC review.
+                Healthcare organizations often carry fragmented privacy programs with
+                inconsistent access logging, undocumented consent workflows, and no formal
+                breach notification procedure, an exposure that becomes visible the moment
+                an IPC review is announced.
               </p>
               <div class="case-field-label">Challenge</div>
               <p class="case-field-text">
                 Build a defensible, auditor-ready PHIPA compliance program in under nine
-                months — covering documentation, training, technical controls, and incident
-                response — while managing routine IT operations in parallel.
+                months, covering documentation, training, technical controls, and incident
+                response, while managing routine IT operations in parallel.
               </p>
             </div>
             <div class="case-col">
@@ -1535,13 +1798,14 @@
             <div class="case-col">
               <div class="case-field-label">Situation</div>
               <p class="case-field-text">
-                Following sector-wide Canadian ransomware advisories, the board required a
-                validated ransomware resilience capability — not a policy on paper, but an
-                operationally tested recovery architecture with confirmed RTOs.
+                Following sector-wide Canadian ransomware advisories, healthcare boards
+                increasingly require a validated ransomware resilience capability, not a
+                policy on paper, but an operationally tested recovery architecture with
+                confirmed RTOs.
               </p>
               <div class="case-field-label">Challenge</div>
               <p class="case-field-text">
-                Design and validate a recovery architecture that could restore critical EHR
+                Design and validate a recovery architecture that can restore critical EHR
                 and clinical systems within clinically acceptable downtime windows without
                 relying on potentially encrypted production backups.
               </p>
@@ -1676,15 +1940,16 @@
           <div class="divider"></div>
 
           <p>
-            I'm Ramzi Naouali — Infrastructure Manager at Hôpital Montfort, Ottawa's only
+            I'm Ramzi Naouali, Infrastructure Manager at Hôpital Montfort, Ottawa's only
             francophone academic hospital. For over 15 years I've led IT infrastructure,
             cybersecurity, and compliance programs in a live acute-care environment where
             the stakes are as real as they get.
           </p>
           <p>
             My work sits at the intersection of operational IT leadership and emerging
-            governance challenges. I've built the programs I talk about — AI governance
-            frameworks, PHIPA compliance structures, Zero Trust architectures — and run
+            governance challenges. I've built the programs I talk about, including AI
+            governance frameworks, PHIPA compliance structures, and Zero Trust architectures,
+            and run
             them through the full cycle of board approval, implementation, and audit.
           </p>
           <p>
@@ -1726,11 +1991,11 @@
 
       <div class="tl-grid">
         <div class="tl-card fade-in fade-in-delay-1">
-          <div class="tl-type">&#127908; Speaking</div>
+          <div class="tl-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg> Speaking</div>
           <h3 class="tl-title">Governing AI in Clinical Settings: A Practitioner's Framework</h3>
           <p class="tl-desc">
             Keynote at CHIA covering the gap between AI vendor marketing and the governance
-            realities facing hospital IT leaders — and what a workable approval process
+            realities facing hospital IT leaders, and what a workable approval process
             actually looks like.
           </p>
           <div class="tl-meta">
@@ -1740,8 +2005,8 @@
         </div>
 
         <div class="tl-card fade-in fade-in-delay-2">
-          <div class="tl-type">&#128221; Article</div>
-          <h3 class="tl-title">Why Most Hospital PHIPA Programs Fail the Audit — And How to Fix Them</h3>
+          <div class="tl-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg> Article</div>
+          <h3 class="tl-title">Why Most Hospital PHIPA Programs Fail the Audit, And How to Fix Them</h3>
           <p class="tl-desc">
             Three structural failures I see repeatedly in Ontario hospital privacy programs,
             and the governance changes that actually address them based on lived experience.
@@ -1753,7 +2018,7 @@
         </div>
 
         <div class="tl-card fade-in fade-in-delay-3">
-          <div class="tl-type">&#127908; Panel</div>
+          <div class="tl-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19a6 6 0 0 1 12 0M14 19a5 5 0 0 1 7 0"/></svg> Panel</div>
           <h3 class="tl-title">The Ransomware Threat to Canadian Hospitals: Lessons from the Field</h3>
           <p class="tl-desc">
             Panelist at the OHA Digital Health Conference discussing operational lessons
@@ -1767,10 +2032,10 @@
         </div>
 
         <div class="tl-card fade-in fade-in-delay-1">
-          <div class="tl-type">&#128221; Article</div>
+          <div class="tl-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg> Article</div>
           <h3 class="tl-title">LLMs in Healthcare: What Your AI Vendor Isn't Telling You About Privacy</h3>
           <p class="tl-desc">
-            What hospital procurement teams should be asking during AI vendor evaluations —
+            What hospital procurement teams should be asking during AI vendor evaluations:
             the privacy and governance questions most aren't asking, and why they matter
             under PHIPA.
           </p>
@@ -1781,11 +2046,11 @@
         </div>
 
         <div class="tl-card fade-in fade-in-delay-2">
-          <div class="tl-type">&#127908; Workshop</div>
+          <div class="tl-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg> Workshop</div>
           <h3 class="tl-title">Practical Zero Trust for Healthcare: A Technical Workshop</h3>
           <p class="tl-desc">
             Half-day workshop for hospital IT teams on micro-segmentation, IoMT isolation,
-            and identity-based access controls in clinical environments — hands-on,
+            and identity-based access controls in clinical environments. Hands-on,
             not theoretical.
           </p>
           <div class="tl-meta">
@@ -1795,124 +2060,16 @@
         </div>
 
         <div class="tl-card fade-in fade-in-delay-3">
-          <div class="tl-type">&#128221; Commentary</div>
+          <div class="tl-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.5-7.1L21 3v6h-6"/></svg> Commentary</div>
           <h3 class="tl-title">Bilingual Healthcare IT: The Francophone Compliance Context</h3>
           <p class="tl-desc">
             The unique compliance and operational challenges facing francophone healthcare
-            institutions in Ontario — where bilingual service obligations intersect
+            institutions in Ontario, where bilingual service obligations intersect
             with PHIPA data governance.
           </p>
           <div class="tl-meta">
             <span class="pill pill-sage">ACFO-ACFO</span>
             <span style="color:var(--text-muted);">2024</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ TESTIMONIALS ═══════ -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="fade-in" style="margin-bottom:48px;">
-        <div class="eyebrow"><span class="eyebrow-line"></span>Colleagues &amp; Collaborators</div>
-        <h2 class="heading">What People Say</h2>
-      </div>
-
-      <div class="testimonials-grid">
-        <div class="testimonial-card fade-in fade-in-delay-1">
-          <div class="t-quote-mark">"</div>
-          <p class="t-text">
-            Ramzi transformed how we think about cybersecurity at Montfort. He built a
-            culture of security awareness that made our entire organization more resilient.
-            His calm under pressure during our incident drills is remarkable.
-          </p>
-          <div class="t-author">
-            <div class="t-avatar" style="background:var(--teal);">DB</div>
-            <div>
-              <div class="t-name">Daniel Breton</div>
-              <div class="t-role">Dirigeant principal de l'information · Hôpital Montfort</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card fade-in fade-in-delay-2">
-          <div class="t-quote-mark">"</div>
-          <p class="t-text">
-            The AI transcription pilot Ramzi's team deployed gave us back hours each week —
-            and the privacy guardrails built in from day one gave me confidence that
-            patient data was never at risk. That's rare in healthcare AI.
-          </p>
-          <div class="t-author">
-            <div class="t-avatar" style="background:#2d6a4f;">MC</div>
-            <div>
-              <div class="t-name">Dr. Marie Charette</div>
-              <div class="t-role">Chief of Medicine · Hôpital Montfort</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card fade-in fade-in-delay-3">
-          <div class="t-quote-mark">"</div>
-          <p class="t-text">
-            His documentation was immaculate, his PHIPA knowledge was deep, and the
-            remediation roadmap he built was actionable. When the IPC arrived, the
-            organization was fully prepared. Zero findings.
-          </p>
-          <div class="t-author">
-            <div class="t-avatar" style="background:var(--rust);">SL</div>
-            <div>
-              <div class="t-name">Sophie Lavoie</div>
-              <div class="t-role">Privacy Officer · Ontario Health Coalition</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card fade-in fade-in-delay-1">
-          <div class="t-quote-mark">"</div>
-          <p class="t-text">
-            Ramzi brings technical rigor and clinical context awareness you rarely see in
-            IT leadership. The network segmentation project came in on time and on budget —
-            which in hospital IT is genuinely impressive.
-          </p>
-          <div class="t-author">
-            <div class="t-avatar" style="background:#1a4a6b;">PL</div>
-            <div>
-              <div class="t-name">Patrick Lamarche</div>
-              <div class="t-role">Administrateur de systèmes · Hôpital Montfort</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card fade-in fade-in-delay-2">
-          <div class="t-quote-mark">"</div>
-          <p class="t-text">
-            Ramzi stands out for his ability to speak both the language of security
-            professionals and clinical stakeholders. That bridge-building skill is
-            what makes his work actually stick across the organization.
-          </p>
-          <div class="t-author">
-            <div class="t-avatar" style="background:#4a1a5c;">AB</div>
-            <div>
-              <div class="t-name">Alain Bergeron</div>
-              <div class="t-role">Director, Digital Health · Canada Health Infoway</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card fade-in fade-in-delay-3">
-          <div class="t-quote-mark">"</div>
-          <p class="t-text">
-            Ramzi mentored me from junior network admin to leading complex infrastructure
-            migrations. His technical depth is matched by his patience as a teacher —
-            he's the reason I take security as seriously as I do today.
-          </p>
-          <div class="t-author">
-            <div class="t-avatar" style="background:var(--teal);">KD</div>
-            <div>
-              <div class="t-name">Kevin Deschatelets</div>
-              <div class="t-role">Administrateur de systèmes · Hôpital Montfort</div>
-            </div>
           </div>
         </div>
       </div>
@@ -1927,7 +2084,7 @@
           <h3>The best place to connect is LinkedIn</h3>
           <p>
             Articles, updates, and conversations on AI governance, PHIPA compliance, and
-            healthcare cybersecurity — all there. LinkedIn is where most of my professional
+            healthcare cybersecurity, all there. LinkedIn is where most of my professional
             exchange actually happens.
           </p>
         </div>
@@ -1951,7 +2108,7 @@
         <h2 class="heading">Start a Conversation</h2>
         <p class="lead">
           Whether you're working through a governance challenge, looking for a peer
-          perspective, or exploring a collaboration — I'm happy to connect.
+          perspective, or exploring a collaboration, I'm happy to connect.
           I'm not currently taking on paid consulting work.
         </p>
       </div>
@@ -1960,7 +2117,7 @@
         <div class="fade-in fade-in-delay-1">
           <p style="font-size:15px;color:var(--text-secondary);line-height:1.75;margin-bottom:8px;">
             The easiest ways to reach me are LinkedIn (preferred) or email.
-            I respond to genuine peer outreach — questions, collaborative ideas,
+            I respond to genuine peer outreach: questions, collaborative ideas,
             speaking invitations, and knowledge exchange.
           </p>
 
@@ -1968,7 +2125,12 @@
 
           <div class="connect-items">
             <div class="connect-item">
-              <div class="connect-icon">&#128140;</div>
+              <div class="connect-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="5" width="18" height="14" rx="2"/>
+                  <path d="M3 7l9 6 9-6"/>
+                </svg>
+              </div>
               <div>
                 <div class="connect-label">Email</div>
                 <div class="connect-value">
@@ -1988,15 +2150,25 @@
             </div>
 
             <div class="connect-item">
-              <div class="connect-icon">&#127968;</div>
+              <div class="connect-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/>
+                  <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+              </div>
               <div>
-                <div class="connect-label">Based at</div>
-                <div class="connect-value">Hôpital Montfort · Ottawa, Ontario</div>
+                <div class="connect-label">Based in</div>
+                <div class="connect-value">Ottawa, Ontario</div>
               </div>
             </div>
 
             <div class="connect-item">
-              <div class="connect-icon">&#127758;</div>
+              <div class="connect-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
+                </svg>
+              </div>
               <div>
                 <div class="connect-label">Languages</div>
                 <div class="connect-value">English · Français</div>
@@ -2037,7 +2209,7 @@
               Send a Note
             </div>
             <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.6;">
-              No agenda required — introduce yourself and tell me what's on your mind.
+              No agenda required. Introduce yourself and tell me what's on your mind.
             </p>
 
             <div class="form-row">
@@ -2082,14 +2254,15 @@
             </div>
 
             <button type="submit" class="form-submit">
-              &#128172; Send Message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              Send Message
             </button>
           </form>
 
           <div class="form-success" id="formSuccess">
             <div class="check">&#10003;</div>
             <h3>Message received</h3>
-            <p>Thanks for reaching out — I'll get back to you soon.</p>
+            <p>Thanks for reaching out, I'll get back to you soon.</p>
           </div>
         </div>
       </div>
@@ -2182,7 +2355,7 @@
       const topic   = document.getElementById('topic').value;
       const message = document.getElementById('message').value.trim();
 
-      const subject = encodeURIComponent(`Website note from ${fname} ${lname}${topic ? ' — ' + topic : ''}`);
+      const subject = encodeURIComponent(`Website note from ${fname} ${lname}${topic ? ' · ' + topic : ''}`);
       const body = encodeURIComponent(
         `From: ${fname} ${lname}\nEmail: ${email}\nOrganization: ${org || 'N/A'}\nTopic: ${topic || 'N/A'}\n\nMessage:\n${message}`
       );
