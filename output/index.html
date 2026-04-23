@@ -820,15 +820,18 @@
       background: rgba(255,255,255,0.04);
     }
 
-    .about-initials {
-      font-family: var(--font-serif);
-      font-size: 5rem;
-      color: rgba(255,255,255,0.9);
-      letter-spacing: -2px;
-      line-height: 1;
-      margin-bottom: 16px;
+    .about-photo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid rgba(255,255,255,0.25);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+      margin-bottom: 18px;
       position: relative;
       z-index: 1;
+      display: block;
     }
 
     .about-role { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.9); position: relative; z-index: 1; }
@@ -1490,8 +1493,7 @@
         <h2 class="heading">Ways to Collaborate</h2>
         <p class="lead">
           I'm open to knowledge exchange, peer review, informal advising, and speaking
-          opportunities. I'm not taking on paid consulting work at this time, but I
-          genuinely enjoy helping teams in healthcare think through hard problems.
+          opportunities. I genuinely enjoy helping teams in healthcare think through hard problems.
         </p>
       </div>
 
@@ -1922,7 +1924,7 @@
       <div class="about-grid">
         <div class="fade-in">
           <div class="about-card">
-            <div class="about-initials">RN</div>
+            <img src="ramzi.jpg" alt="Ramzi Naouali" class="about-photo" />
             <div class="about-role">Ramzi Naouali</div>
             <div class="about-org">Gestionnaire Infrastructure · Hôpital Montfort</div>
             <div class="about-creds">
@@ -2107,7 +2109,6 @@
         <p class="lead">
           Whether you're working through a governance challenge, looking for a peer
           perspective, or exploring a collaboration, I'm happy to connect.
-          I'm not currently taking on paid consulting work.
         </p>
       </div>
 
